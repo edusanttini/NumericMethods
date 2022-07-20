@@ -26,44 +26,36 @@ def multiply_mat():
         print_mat("Matriz A", mat_a)
         print_mat("Matriz B", mat_b)
         print_mat("Matriz R = A * B", matrix_product(mat_a, mat_b))
-        print_numpy_result(np.matmul(mat_a, mat_b))
+        print_mat_numpy(np.matmul(np.array(mat_a), np.array(mat_b)))
     else:
         print(f"Coluna de A {len(mat_a)} é diferente da linha de B {len(mat_b[0])}. Não posso multiplicar!")
 
 
-def get_constant():
-    return int(input("What is the constant you would like to multiply your matrix for?"))
-
-
-def scalar_matrix_product():#TODO create scalar procuct method by myself
+def scalar_matrix_product():
     mat_a = get_matrix("Matrix A")
-    result = np.dot(mat_a, get_constant())
-    print("Result: \n", result)
-
-
-def min_matrix_element(mat_a):#TODO create scalar procuct method by myself
-    return np.min(mat_a)
-
-
-def max_matrix_element(mat_a):#TODO create scalar procuct method by myself
-    return np.max(mat_a)
-
-
-def sum_matrix(mat_a):#TODO create scalar procuct method by myself
-    return np.sum(mat_a)
+    k = get_constant()
+    print_mat("Matrix R * K =", scalar_product(mat_a, k))
+    print_mat_numpy(np.dot(np.array(mat_a), k))
 
 
 def third_case():
     mat_a = get_matrix("Matrix A")
-    print("Min result: \n", min_matrix_element(mat_a))
-    print("Max result: \n", max_matrix_element(mat_a))
-    print("Sum result: \n", sum_matrix(mat_a))
+    print("Min Result: ", min_matrix_element(mat_a))
+    print("Max Result: ", max_matrix_element(mat_a))
+    print("Sum Result: ", sum_matrix(mat_a))
+    print("Min Result numPy: ", np.min(np.array(mat_a)))
+    print("Max result numPy: ", np.max(np.array(mat_a)))
+    print("Sum result numPy: ", np.sum(np.array(mat_a)))
 
 
 def matrix_determinant():
     mat_a = get_matrix("Matrix A")
-    result = np.linalg.det(mat_a)
-    print("Result: \n", result)
+    print("Result: \n", np.linalg.det(mat_a))
+
+
+def matrix_transpose():
+    mat_a = get_matrix("Matrix A")
+    print_mat_numpy(np.transpose(np.array(mat_a)))
 
 
 option = 1
@@ -80,6 +72,9 @@ while option != 0:
         case 4:
             matrix_determinant()
         case 5:
-            get_numpy_matrix("oi")
+            matrix_determinant()
+        case 6:
+            matrix_transpose()
         case default:
             print("wrong option nerd")
+    input("Press Enter to continue.")

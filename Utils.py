@@ -2,24 +2,24 @@ from MatFunctions import *
 import numpy as np
 
 
-def print_mat(title, m):
+def print_mat(title, mat):
     print(title)
-    for i in range(len(m)):
-        for j in range(len(m[i])):
-            print(m[i][j], end="  ")
+    for i in range(len(mat)):
+        for j in range(len(mat[i])):
+            print(mat[i][j], end="  ")
         print()
 
 
-def print_python_result(result):
-    print("Python Result: \n")
-    for i in range(len(result)):
-        for j in range(len(result[i])):
-            print(result[i][j], end="  ")
+def print_mat_numpy(mat):
+    print("NumPy Result: ")
+    for i in range(len(mat)):
+        for j in range(len(mat[i])):
+            print(mat[i][j], end="  ")
         print()
 
 
-def print_numpy_result(result):
-    print("NumPy Result: \n", result)
+def get_constant():
+    return int(input("What is the constant you would like to multiply your matrix for?"))
 
 
 def __get_mat(title, m):
@@ -30,19 +30,9 @@ def __get_mat(title, m):
             m[i][j] = int(input(f"   {title}[{i}][{j}]:"))
 
 
-def get_matrix(title, is_numpy):
+def get_matrix(title):
     row, col = get_dimension(title)
-    if is_numpy:
-        mat_a = np.ndarray(shape=(row, col), dtype=int)
-    else:
-        mat_a = create_mat(row, col)
-    __get_mat(title, mat_a)
-    return mat_a
-
-
-def get_numpy_matrix(title):
-    row, col = get_dimension(title)
-
+    mat_a = create_mat(row, col)
     __get_mat(title, mat_a)
     return mat_a
 
