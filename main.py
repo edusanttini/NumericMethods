@@ -15,10 +15,6 @@ def print_menu():
     print("  6 - transposta de matriz")
 
 
-def print_matrix(title, matrix):
-    print("Matrix ", title, ": \n", matrix)
-
-
 def multiply_mat():
     mat_a = get_matrix("Matrix A")
     mat_b = get_matrix("Matrix B")
@@ -48,13 +44,20 @@ def third_case():
     print("Sum result numPy: ", np.sum(np.array(mat_a)))
 
 
-def matrix_determinant():
-    mat_a = get_matrix("Matrix A")
-    print("Result: \n", np.linalg.det(mat_a))
+def matrix_determinant(size):
+    if size == 3:
+        mat_a = get_hardcoded_matrix("Matrix A", size)
+        print("NumPy Result: \n", np.linalg.det(mat_a))
+        print("Result: \n", get_matrix_determinant(mat_a))
+    else:
+        mat_a = get_hardcoded_matrix("Matrix A", size)
+        print("NumPy Result: \n", np.linalg.det(mat_a))
+        print("Result: \n", get_matrix_determinant(mat_a))
 
 
 def matrix_transpose():
     mat_a = get_matrix("Matrix A")
+    print_mat("Matrix A", get_matrix_transpose(mat_a))
     print_mat_numpy(np.transpose(np.array(mat_a)))
 
 
@@ -70,9 +73,9 @@ while option != 0:
         case 3:
             third_case()
         case 4:
-            matrix_determinant()
+            matrix_determinant(3)
         case 5:
-            matrix_determinant()
+            matrix_determinant(4)
         case 6:
             matrix_transpose()
         case default:

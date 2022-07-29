@@ -37,6 +37,13 @@ def get_matrix(title):
     return mat_a
 
 
+def get_hardcoded_matrix(title, size):
+    row = col = size
+    mat_a = create_mat(row, col)
+    __get_mat(title, mat_a)
+    return mat_a
+
+
 def get_dimension(title):
     print("\nForneça os dados para", title)
     row = int(input(f"Qtde de linhas da {title}: "))
