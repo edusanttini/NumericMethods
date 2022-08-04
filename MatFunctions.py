@@ -61,61 +61,40 @@ def sum_matrix(mat_a):
     return result
 
 
-def get_positive_diagonal_values(mat_a, row, col):
-    main_diag = sec_diag = third_diag = 1
+def zeros_matrix(rows, cols):
+    mat = []
+    while len(mat) < rows:
+        mat.append([])
+        while len(mat[-1]) < cols:
+            mat[-1].append(0.0)
+    return mat
+
+
+def copy_matrix(mat):
+    rows = len(mat)
+    cols = len(mat[0])
+    matrix_copy = zeros_matrix(rows, cols)
+    for i in range(rows):
+        for j in range(cols):
+            matrix_copy[i][j] = mat[i][j]
+    return matrix_copy
+
+
+def get_any_matrix_determinant(mat):
+    row = len(mat)
+    new_matrix = copy_matrix(mat)
+    for fd in range(row):
+        for i in range(fd + 1, row):
+            if new_matrix[fd][fd] == 0:
+                new_matrix[fd][fd] == 1.0e-18
+            if new_matrix[fd][fd] != 0:
+                cr_scaler = new_matrix[i][fd] / new_matrix[fd][fd]
+            for j in range(row):
+                new_matrix[i][j] = new_matrix[i][j] - cr_scaler * new_matrix[fd][j]
+    product = 1.0
     for i in range(row):
-        for j in range(col):
-            if i == j:
-                main_diag = main_diag * mat_a[i][j]
-            elif i == 0 and j == 2\
-                    or i == 1 and j == 0\
-                    or i == 2 and j == 1:
-                sec_diag = sec_diag * mat_a[i][j]
-            elif i == 0 and j == 1\
-                    or i == 1 and j == 2\
-                    or i == 2 and j == 0:
-                third_diag = third_diag * mat_a[i][j]
-    return main_diag + sec_diag + third_diag
-
-
-def get_negative_diagonal_values(mat_a, row, col):
-    fourth_diag = fifth_diag = sixth_diag = 1
-    for i in range(row):
-        for j in range(col):
-            if i == 0 and j == 2 \
-                    or i == 1 and j == 1 \
-                    or i == 2 and j == 0:
-                fourth_diag = fourth_diag * mat_a[i][j]
-            elif i == 0 and j == 1 \
-                    or i == 1 and j == 0 \
-                    or i == 2 and j == 2:
-                fifth_diag = fifth_diag * mat_a[i][j]
-            elif i == 0 and j == 0 \
-                    or i == 1 and j == 2 \
-                    or i == 2 and j == 1:
-                sixth_diag = sixth_diag * mat_a[i][j]
-    return fourth_diag + fifth_diag + sixth_diag
-
-
-def remove_row(mat_a):
-    print("TODO - remove row for laplace rule")
-    return mat_a
-
-
-def remove_col(mat_a):
-    print("TODO - remove col for laplace rule")
-    return mat_a
-
-
-def get_matrix_determinant(mat_a):
-    row = len(mat_a)
-    col = len(mat_a[0])
-    if row == 4 and col == 4:
-        remove_row(mat_a)
-        remove_col(mat_a)
-    positive_diag = get_positive_diagonal_values(mat_a, row, col)
-    negative_diag = get_negative_diagonal_values(mat_a, row, col)
-    return positive_diag - negative_diag
+        product *= new_matrix[i][i]
+    return product
 
 
 def get_matrix_transpose(mat_a):

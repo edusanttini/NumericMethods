@@ -48,11 +48,11 @@ def matrix_determinant(size):
     if size == 3:
         mat_a = get_hardcoded_matrix("Matrix A", size)
         print("NumPy Result: \n", np.linalg.det(mat_a))
-        print("Result: \n", get_matrix_determinant(mat_a))
+        print("Result: \n", get_any_matrix_determinant(mat_a))
     else:
         mat_a = get_hardcoded_matrix("Matrix A", size)
         print("NumPy Result: \n", np.linalg.det(mat_a))
-        print("Result: \n", get_matrix_determinant(mat_a))
+        print("Result: \n", get_any_matrix_determinant(mat_a))
 
 
 def matrix_transpose():
